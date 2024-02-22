@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Converter</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3xq+93f6111YRTSEoZxOWNsOzjP4t4vOMzHONVW5z4zn+X1oP5VWkc9E65+Il1U1TzT8+LL9gczt458P9itf09uHu1+w" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>File Converter</h1>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Select file to convert:</label>
+                <input type="file" name="file" id="file" class="form-control-file" required>
+            </div>
+            <div class="form-group">
+                <label for="output_format">Select output format:</label>
+                <select name="output_format" id="output_format" class="form-control" required>
+                    <option value="txt">TXT</option>
+                    <option value="pdf">PDF</option>
+                    <option value="docx">DOCX</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Convert</button>
+        </form>
+        {% with messages = get_flashes(with_categories=True) %}
+            {% for category, messages in messages %}
+                <ul class="alert alert-{{ category }}">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        {% endwith %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfU70vG7EXzRM1JuPoFWb1nfwVNT6z/J5OM45sHJC6zWNDxB5mKgPIsLJzGO04" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/rePb3gKkbsfSYzlHSOjbfytRWqc1vVOKT5C5iMfU5gKmTp3bU1U1HZYuUtztn5" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-Chfqqq9Bg1Y1H0i64ELCWgVAj4qsVjBsjggjcPZ+G7pEWv4tmrwta5QThzuTazUe" crossorigin="anonymous"></script>
+</body>
+</html>

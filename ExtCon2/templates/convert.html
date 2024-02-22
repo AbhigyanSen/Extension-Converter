@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Conversion</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyVQZl5v7VSA+8EVtFbT1Kt9TIq0xhKj8u" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>File Conversion</h1>
+        <p>{{ document_type }}</p>
+        <form method="POST" action="/convert/{{ filename }}">
+            <div class="form-group">
+                <label for="output_format">Select Output Format:</label>
+                <select class="form-control" id="output_format" name="output_format">
+                    {% for format in output_formats %}
+                        <option value="{{ format }}">{{ format }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Start Conversion</button>
+        </form>
+    </div>
+</body>
+</html>

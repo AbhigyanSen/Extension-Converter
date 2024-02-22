@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload and Categorization</title>
+</head>
+<body>
+    <h1>File Upload and Categorization</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".doc, .xls, .pdf, .ppt, .txt, .pptx, .docx, .xlsx">
+        <input type="submit" value="Upload">
+    </form>    
+
+    {% if category %}
+        <p>File Category: {{ category }}</p>
+        <p>Current Extension: {{ current_extension }}</p>
+
+        {% if conversion_success_message %}
+            <p>{{ conversion_success_message }}</p>
+            {% if converted_filename %}
+                <form action="/download/{{ converted_filename }}" method="get">
+                    <button type="submit">Download Converted File</button>
+                </form>
+            {% endif %}
+        {% endif %}
+
+        <form method="post" action="/">
+            <label for="other_extensions">Convert to:</label>
+            <select name="other_extensions" id="other_extensions">
+                {% for option in dropdown_options %}
+                    <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Start Conversion</button>
+        </form>
+    {% endif %}
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
